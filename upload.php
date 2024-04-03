@@ -1,15 +1,32 @@
-<?php 
-    require "config.php";
-
-    $image = $_FILES['image']['name'];
-
-    $targetDir = "MEDIA/productimgs/";
-    $targetFile = $targetDir . basename($_FILES['image']['name']);
-
-    if(move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)){
-        echo "The file ". basename($_FILES["image"]["name"]). " has been uploaded.";
+<?php
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Check if file input is not empty
+    if (!empty($_FILES["image"]["name"])) {
+        // File upload directory
+        $targetDir = "media/uploadedImages/";
+        // Get the filename
+        $fileName = basename($_FILES["image"]["name"]);
+        // Set the target file path
+        $targetFilePath = $targetDir . $fileName;
+        // Get the file extension
+        $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+        
+        // Check if the file is an image
+        $allowTypes = array('jpg', 'jpeg', 'png', 'gif');
+        if (in_array($fileType, $allowTypes)) {
+            // Upload file to server
+            if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFilePath)) {
+                echo "The file " . $fileName . " has been uploaded.";
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
+        } else {
+            echo "Only JPG, JPEG, PNG, and GIF files are allowed.";
+        }
     } else {
-        echo "Sorry, there was an error uploading your file.";
+        echo "No file uploaded.";
     }
-
+    echo $fileName;
+}
 ?>
