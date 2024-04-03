@@ -22,9 +22,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFilePath)) {
                 echo "The file " . $fileName . " has been uploaded.";
                 $event = $_POST['event'];
-                $query = "INSERT INTO Upload_login ('fotonaam', 'eventnaam') VALUES ('$fileName', '$event')";
-                
-                //stuur hem nog door naar database
+                $query = "INSERT INTO `Upload` (`fotonaam`, `eventnaam`) VALUES ('$fileName', '$event')";
+                echo $query;
+                $mysqli->query($query);
+
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }

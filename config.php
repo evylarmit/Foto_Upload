@@ -17,3 +17,8 @@ error_reporting(E_ALL);
     } else {
         echo "Verbinding met " . $db_database . " is gemaakt <br>";
     }
+
+    //uzername 88890
+    //wachtwoord NYGz3s9L27
+    //wauwie ik hou van meggings -aron
+    //ik draag iederen dag meggings -aron
