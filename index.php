@@ -10,6 +10,7 @@
     
     <form action="upload.php" method="post" enctype="multipart/form-data">
         <input type="file" name="image">
+        <input type="text" name="event" placeholder="event">
         <input type="submit">
     </form>
 </body>

@@ -79,7 +79,7 @@
 
 <div class="container">
     <h2>Inloggen</h2>
-    <form action="inlogVerwerk.php" method="post">
+    <form action="loginVerwerk.php" method="post">
         <div class="input-group">
             <label for="username">Gebruikersnaam:</label>
             <input type="text" id="username" name="username" required>

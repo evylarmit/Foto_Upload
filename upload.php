@@ -1,4 +1,7 @@
 <?php
+
+require "config.php";
+
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if file input is not empty
@@ -18,6 +21,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Upload file to server
             if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFilePath)) {
                 echo "The file " . $fileName . " has been uploaded.";
+                $event = $_POST['event'];
+                $query = "INSERT INTO Upload_login ('fotonaam', 'eventnaam') VALUES ('$fileName', '$event')";
+                
+                //stuur hem nog door naar database
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }
@@ -27,6 +34,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "No file uploaded.";
     }
-    echo $fileName;
 }
 ?>
